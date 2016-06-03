@@ -56,13 +56,6 @@
   },
   "description": "Controlling SONOS Player",
   "devDependencies": {},
-  "directories": {},
-  "dist": {
-    "shasum": "f18947a76bd3a431a4d6ba77e47aae9813aed9d2",
-    "tarball": "https://registry.npmjs.org/node-red-contrib-sonos/-/node-red-contrib-sonos-0.0.6.tgz"
-  },
-  "gitHead": "c1d25548d5aa4d248f7c6d1636facb162d723a88",
-  "homepage": "http://flows.nodered.org/node/node-red-contrib-sonos",
   "keywords": [
     "node-red",
     "sonos",
