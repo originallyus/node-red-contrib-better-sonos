@@ -1,0 +1,97 @@
+{
+  "_args": [
+    [
+      "node-red-contrib-sonos",
+      "/home/pi/.node-red"
+    ]
+  ],
+  "_from": "node-red-contrib-sonos@latest",
+  "_id": "node-red-contrib-sonos@0.0.6",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/node-red-contrib-sonos",
+  "_nodeVersion": "5.10.1",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/node-red-contrib-sonos-0.0.6.tgz_1461520781077_0.9285227975342423"
+  },
+  "_npmUser": {
+    "email": "smarthome@rhenjes.de",
+    "name": "shbert"
+  },
+  "_npmVersion": "3.8.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "node-red-contrib-sonos",
+    "raw": "node-red-contrib-sonos",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/node-red-contrib-sonos/-/node-red-contrib-sonos-0.0.6.tgz",
+  "_shasum": "f18947a76bd3a431a4d6ba77e47aae9813aed9d2",
+  "_shrinkwrap": null,
+  "_spec": "node-red-contrib-sonos",
+  "_where": "/home/pi/.node-red",
+  "author": {
+    "email": "smarthome@rhenjes.de",
+    "name": "Robert Henjes"
+  },
+  "bugs": {
+    "url": "https://github.com/shbert/node-red-contrib-sonos/issues"
+  },
+  "contributors": [
+    {
+      "email": "smarthome@rhenjes.de",
+      "name": "Robert Henjes"
+    }
+  ],
+  "dependencies": {
+    "jsbn": "^0.0.0",
+    "sonos": "0.12.0"
+  },
+  "description": "Controlling SONOS Player",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "f18947a76bd3a431a4d6ba77e47aae9813aed9d2",
+    "tarball": "https://registry.npmjs.org/node-red-contrib-sonos/-/node-red-contrib-sonos-0.0.6.tgz"
+  },
+  "gitHead": "c1d25548d5aa4d248f7c6d1636facb162d723a88",
+  "homepage": "http://flows.nodered.org/node/node-red-contrib-sonos",
+  "keywords": [
+    "node-red",
+    "sonos",
+    "music"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "email": "smarthome@rhenjes.de",
+      "name": "shbert"
+    }
+  ],
+  "name": "node-red-contrib-sonos",
+  "node-red": {
+    "nodes": {
+      "sonos-config": "sonos/sonos-config.js",
+      "sonos-control": "sonos/sonos-control.js",
+      "sonos-currenttrack": "sonos/sonos-currenttrack.js",
+      "sonos-status": "sonos/sonos-status.js",
+      "sonos-queue": "sonos/sonos-queue.js"
+    }
+  },
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shbert/node-red-contrib-sonos.git"
+  },
+  "scripts": {},
+  "version": "0.0.6"
+}

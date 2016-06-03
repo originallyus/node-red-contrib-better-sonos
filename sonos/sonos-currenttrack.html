@@ -1,0 +1,41 @@
+<!-- Sonos Get CurrentTrack Node -->
+<!-- just returns the currently played track from a specific SONOS player -->
+
+<!-- Registering Sonos CurrentTrack Node -->
+<script type="text/javascript">
+	RED.nodes.registerType('sonos-currenttrack',{
+        category: 'Sonos',
+        defaults: {    
+            playnode: {value:"", type:"sonos-config"},
+            name: {value:""}
+        },
+        inputs:1,               // set the number of inputs - only 0 or 1
+        outputs:1,              // set the number of outputs - 0 to n
+        icon: "bridge.png",     // saved in  icons/myicon.png
+        color: "#E2D96E", 
+        label: function() {
+            return this.name || "Sonos current track";
+        },
+        paletteLabel: "Current Track"
+        
+    });
+</script>
+
+<!-- Setting design and inputs for node -->
+<script type="text/x-red" data-template-name="sonos-currenttrack">
+	<div class="form-row">
+        <label for="node-input-playnode"> SONOS Play Node</label>
+        <input type="text" id="node-input-playnode">
+    </div>
+
+	<div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="SONOS Play Node Name">
+    </div>	
+</script>
+
+
+<!-- Simple Help Text -->
+<script type="text/x-red" data-help-name="sonos-currenttrack">
+	<p>A node to retrieve current track upon trigger</p>
+</script>
