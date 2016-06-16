@@ -1,0 +1,90 @@
+<!-- Sonos Control Node -->
+<!-- Controls node status, play/stop/pause + track: next/previous + volume: value/mute/unmute -->
+
+<!-- Registering Sonos Play Node -->
+<script type="text/javascript">
+    RED.nodes.registerType('sonos-control',{
+        category: 'Sonos',
+        defaults: {    
+            playnode: {value:"", type:"sonos-config"},
+            name: {value:""},
+			mode: {value:""},
+			track: {value:""},
+			volume: {value:""},
+			volume_value: {value:""} // TODO: check if value between 0..100
+        },
+        inputs:1,               // set the number of inputs - only 0 or 1
+        outputs:0,              // set the number of outputs - 0 to n
+        icon: "bridge.png",     // saved in  icons/myicon.png
+        color: "#E2D96E", 
+        label: function() {
+            return this.name || "Control Sonos";
+        },
+        paletteLabel: "Control",
+		// TODO: On change, focus and hide.
+        oneditprepare: function () {
+          $('#node-input-volume').change(function () {
+            var value = $('#node-input-volume').val()
+            $('.form-row.toggle').hide()
+            $('.form-row.' + value).show()
+		  })
+		},
+        
+    });
+</script>
+
+<!-- Setting design and inputs for node -->
+<script type="text/x-red" data-template-name="sonos-control">
+     <div class="form-row">
+        <label for="node-input-playnode"> SONOS Play Node</label>
+        <input type="text" id="node-input-playnode">
+    </div>
+	
+	<div class="form-row">
+        <label for="node-input-mode"><i class="fa fa-tag"></i> Mode</label>
+		<select type="text" id="node-input-mode" style="display: inline-block; width: 70%;" >
+			<option value=""></option>
+            <option value="play">Play</option>
+            <option value="pause">Pause</option>
+            <option value="stop">Stop</option>			
+        </select>
+    </div>
+
+	<div class="form-row">
+        <label for="node-input-track"><i class="fa fa-tag"></i> Track</label>
+		<select type="text" id="node-input-track" style="display: inline-block; width: 70%;" >
+			<option value=""></option>
+            <option value="next">Next</option>
+            <option value="previous">Previous</option>			
+        </select>
+    </div>
+	
+	<div class="form-row">
+        <label for="node-input-volume"><i class="fa fa-tag"></i> Volume</label>
+		<select type="text" id="node-input-volume" style="display: inline-block; width: 70%;" >
+			<option value="empty"></option>
+            <option value="volume">Set volume</option>
+            <option value="mute">Mute</option>	
+			<option value="unmute">Unmute</option>			
+        </select>
+    </div>
+	
+	<div class="form-row toggle volume">
+		<label for="node-input-volume_value"><i class="fa fa-tag"></i> Value</label>
+        <input type="text" id="node-input-volume_value" placeholder="Volume Value 0..100">
+	</div>
+	
+	<div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="SONOS Play Node Name">
+    </div>
+</script>
+
+
+<!-- Simple Help Text -->
+<script type="text/x-red" data-help-name="sonos-control">
+	<p>A node to control SONOS player</p>
+	<p>This node enables basic controls for a certain SONOS player.</p>
+	<p>Data can be sent either via JSON to the node, or directly set within the node controls as a standard action.</p>
+	<p>Settings within the node will be overwritten by JSON messages in the payload</p>
+</script>

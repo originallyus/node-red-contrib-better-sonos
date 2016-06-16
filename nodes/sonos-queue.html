@@ -1,0 +1,71 @@
+<!-- Sonos Queue Songs -->
+<!-- Queuing songs into playlists -->
+
+<!-- Registering Node -->
+<script type="text/javascript">
+	RED.nodes.registerType('sonos-queue',{
+        category: 'Sonos',
+        defaults: {    
+            playnode: {value:"", type:"sonos-config"},
+			songuri: {value:""},
+			position: {value:""},
+			positioninqueue: {value:""},
+            name: {value:""}
+        },
+        inputs:1,               // set the number of inputs - only 0 or 1
+        outputs:1,              // set the number of outputs - 0 to n
+        icon: "bridge.png",     // saved in  icons/myicon.png
+        color: "#E2D96E", 
+        label: function() {
+            return this.name || "Sonos queue song";
+        },
+        paletteLabel: "Queue",
+        // TODO: On change, focus and hide.
+        oneditprepare: function () {
+          $('#node-input-position').change(function () {
+            var value = $('#node-input-position').val()
+            $('.form-row.toggle').hide()
+            $('.form-row.' + value).show()
+		  });
+		},
+    });
+</script>
+
+<!-- Setting design and inputs for node -->
+<script type="text/x-red" data-template-name="sonos-queue">
+	<div class="form-row">
+        <label for="node-input-playnode"> SONOS Play Node</label>
+        <input type="text" id="node-input-playnode">
+    </div>
+	
+	<div class="form-row">
+        <label for="node-input-songuri"><i class="fa fa-tag"></i> Song URI</label>
+        <input type="text" id="node-input-songuri" placeholder="Song URI to queue">
+    </div>	
+	
+	<div class="form-row">
+        <label for="node-input-position"><i class="fa fa-tag"></i> Position</label>
+		<select type="text" id="node-input-position" style="display: inline-block; width: 70%;" >
+			<option value="empty"></option>
+            <option value="next">Queue next</option>
+            <option value="positioninqueue">Position in queue</option>				
+        </select>
+    </div>
+	
+	<div class="form-row toggle positioninqueue">
+		<label for="node-input-positioninqueue"><i class="fa fa-tag"></i> Value</label>
+        <input type="text" id="node-input-positioninqueue" placeholder="Position in queue (1..end, 0=end)">
+	</div>
+
+	<div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="SONOS Queue Node Name">
+    </div>	
+</script>
+
+
+<!-- Simple Help Text -->
+<script type="text/x-red" data-help-name="sonos-queue">
+	<p>A node for manipulating playlists/queues within Sonos</p>
+	<p>Please refer to the documentation within the sonos npm module for the functions queue() and queueNext()</p>
+</script>

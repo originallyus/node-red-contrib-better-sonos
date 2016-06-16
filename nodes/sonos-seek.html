@@ -1,0 +1,41 @@
+<!-- Sonos Get Seek Position Node -->
+<!-- just returns the Seek Position from a specific SONOS player -->
+
+<!-- Registering Sonos Seek Position Node -->
+<script type="text/javascript">
+	RED.nodes.registerType('sonos-seek',{
+        category: 'Sonos',
+        defaults: {    
+            playnode: {value:"", type:"sonos-config"},
+            name: {value:""}
+        },
+        inputs:0,               // set the number of inputs - only 0 or 1
+        outputs:1,              // set the number of outputs - 0 to n
+        icon: "bridge.png",     // saved in  icons/myicon.png
+        color: "#E2D96E", 
+        label: function() {
+            return this.name || "Sonos Seek Position";
+        },
+        paletteLabel: "Seek Position"
+        
+    });
+</script>
+
+<!-- Setting design and inputs for node -->
+<script type="text/x-red" data-template-name="sonos-seek">
+	<div class="form-row">
+        <label for="node-input-playnode"> SONOS Play Node</label>
+        <input type="text" id="node-input-playnode">
+    </div>
+
+	<div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="SONOS Play Node Name">
+    </div>	
+</script>
+
+
+<!-- Simple Help Text -->
+<script type="text/x-red" data-help-name="sonos-seek">
+	<p>A node to retrieve seek position every 500ms</p>
+</script>

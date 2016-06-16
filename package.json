@@ -2,7 +2,7 @@
   "_args": [
     [
       "node-red-contrib-sonos",
-      "/home/pi/.node-red"
+      "/home/pi"
     ]
   ],
   "_from": "node-red-contrib-sonos@latest",
@@ -36,7 +36,7 @@
   "_shasum": "f18947a76bd3a431a4d6ba77e47aae9813aed9d2",
   "_shrinkwrap": null,
   "_spec": "node-red-contrib-sonos",
-  "_where": "/home/pi/.node-red",
+  "_where": "/home/pi",
   "author": {
     "email": "smarthome@rhenjes.de",
     "name": "Robert Henjes"
@@ -56,6 +56,13 @@
   },
   "description": "Controlling SONOS Player",
   "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "f18947a76bd3a431a4d6ba77e47aae9813aed9d2",
+    "tarball": "https://registry.npmjs.org/node-red-contrib-sonos/-/node-red-contrib-sonos-0.0.6.tgz"
+  },
+  "gitHead": "c1d25548d5aa4d248f7c6d1636facb162d723a88",
+  "homepage": "http://flows.nodered.org/node/node-red-contrib-sonos",
   "keywords": [
     "node-red",
     "sonos",
@@ -72,11 +79,14 @@
   "name": "node-red-contrib-sonos",
   "node-red": {
     "nodes": {
-      "sonos-config": "sonos/sonos-config.js",
-      "sonos-control": "sonos/sonos-control.js",
-      "sonos-currenttrack": "sonos/sonos-currenttrack.js",
-      "sonos-status": "sonos/sonos-status.js",
-      "sonos-queue": "sonos/sonos-queue.js"
+      "sonos-config":        "nodes/sonos-config.js",
+      "sonos-currenttrack":  "nodes/sonos-currenttrack.js",
+      "sonos-volume":        "nodes/sonos-volume.js",
+      "sonos-seek":          "nodes/sonos-seek.js",
+      "sonos-state":         "nodes/sonos-state.js",
+
+      "sonos-control":       "nodes/sonos-control.js",
+      "sonos-queue":         "nodes/sonos-queue.js"
     }
   },
   "optionalDependencies": {},

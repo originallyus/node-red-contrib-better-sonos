@@ -1,0 +1,41 @@
+<!-- Sonos Get State Node -->
+<!-- just returns the state from a specific SONOS player -->
+
+<!-- Registering Sonos State Node -->
+<script type="text/javascript">
+	RED.nodes.registerType('sonos-state',{
+        category: 'Sonos',
+        defaults: {    
+            playnode: {value:"", type:"sonos-config"},
+            name: {value:""}
+        },
+        inputs:0,               // set the number of inputs - only 0 or 1
+        outputs:1,              // set the number of outputs - 0 to n
+        icon: "bridge.png",     // saved in  icons/myicon.png
+        color: "#E2D96E", 
+        label: function() {
+            return this.name || "Sonos state";
+        },
+        paletteLabel: "State"
+        
+    });
+</script>
+
+<!-- Setting design and inputs for node -->
+<script type="text/x-red" data-template-name="sonos-state">
+	<div class="form-row">
+        <label for="node-input-playnode"> SONOS Play Node</label>
+        <input type="text" id="node-input-playnode">
+    </div>
+
+	<div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="SONOS Play Node Name">
+    </div>	
+</script>
+
+
+<!-- Simple Help Text -->
+<script type="text/x-red" data-help-name="sonos-state">
+	<p>A node to retrieve state every 500ms</p>
+</script>

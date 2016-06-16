@@ -1,28 +1,28 @@
-<!-- Sonos Get Status Node -->
-<!-- just returns the currently played status from a specific SONOS player -->
+<!-- Sonos Get CurrentTrack Node -->
+<!-- just returns the currently played track from a specific SONOS player -->
 
-<!-- Registering Sonos Status Node -->
+<!-- Registering Sonos CurrentTrack Node -->
 <script type="text/javascript">
-	RED.nodes.registerType('sonos-status',{
+	RED.nodes.registerType('sonos-currenttrack',{
         category: 'Sonos',
         defaults: {    
             playnode: {value:"", type:"sonos-config"},
             name: {value:""}
         },
-        inputs:1,               // set the number of inputs - only 0 or 1
+        inputs:0,               // set the number of inputs - only 0 or 1
         outputs:1,              // set the number of outputs - 0 to n
-        icon: "sonos.png",     // saved in  icons/myicon.png
-        color: "#E9967A", 
+        icon: "bridge.png",     // saved in  icons/myicon.png
+        color: "#E2D96E", 
         label: function() {
-            return this.name || "Sonos current status";
+            return this.name || "Sonos current track";
         },
-        paletteLabel: "Status"
+        paletteLabel: "Current Track"
         
     });
 </script>
 
 <!-- Setting design and inputs for node -->
-<script type="text/x-red" data-template-name="sonos-status">
+<script type="text/x-red" data-template-name="sonos-currenttrack">
 	<div class="form-row">
         <label for="node-input-playnode"> SONOS Play Node</label>
         <input type="text" id="node-input-playnode">
@@ -36,6 +36,6 @@
 
 
 <!-- Simple Help Text -->
-<script type="text/x-red" data-help-name="sonos-status">
-	<p>A node to retrieve current status upon trigger</p>
+<script type="text/x-red" data-help-name="sonos-currenttrack">
+	<p>A node to retrieve current track upon trigger</p>
 </script>
