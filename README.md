@@ -10,9 +10,6 @@ Open points / not tested yet:
 * controlling stereo and or surround configurations
 * automatic detection of play configuration
 
-Known issues:
-* status is only set according to input, not requested from player
-
 Planned upcoming features:
 * annoucement node (should play a jingle or a text to speech thing and then continue with current playlist)
 

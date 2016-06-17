@@ -1,0 +1,50 @@
+<!-- Sonos Set Node -->
+<!-- just returns specified data from a specific SONOS player -->
+
+<!-- Registering Sonos Set Node -->
+<script type="text/javascript">
+	RED.nodes.registerType('sonos-set',{
+        category: 'Sonos',
+        defaults: {    
+            playnode: {value:"", type:"sonos-config"},
+            name: {value:""},
+            dataType: {value:'state', required:true},
+        },
+        inputs:1,               // set the number of inputs - only 0 or 1
+        outputs:0,              // set the number of outputs - 0 to n
+        icon: "bridge.png",     // saved in  icons/myicon.png
+        color: "#E2D96E", 
+        label: function() {
+            return this.name || "Sonos Set";
+        },
+        paletteLabel: "Sonos Set",
+    });
+</script>
+
+<!-- Setting design and inputs for node -->
+<script type="text/x-red" data-template-name="sonos-set">
+	<div class="form-row">
+        <label for="node-input-playnode"> SONOS Node</label>
+        <input type="text" id="node-input-playnode">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-dataType">Data Type</label>
+        <select id="node-input-dataType" style="width:70%;">
+            <option value="state">State</option>
+            <option value="volume">Volume</option>
+            <option value="track">Prev/Next Track</option>
+            <option value="seek">Seek Position</option>
+        </select>
+    </div>
+	<div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="SONOS Node Name">
+    </div>	
+</script>
+
+
+<!-- Simple Help Text -->
+<script type="text/x-red" data-help-name="sonos-set">
+	<p>A node to retrieve data by timer</p>
+</script>

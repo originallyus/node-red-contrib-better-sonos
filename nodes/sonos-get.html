@@ -1,0 +1,65 @@
+<!-- Sonos Get Node -->
+<!-- just returns specified data from a specific SONOS player -->
+
+<!-- Registering Sonos Get Node -->
+<script type="text/javascript">
+	RED.nodes.registerType('sonos-get',{
+        category: 'Sonos',
+        defaults: {    
+            playnode: {value:"", type:"sonos-config"},
+            name: {value:""},
+            dataType: {value:'state', required:true},
+            updateInterval: {value: 500, validate:RED.validators.number(), required:true},
+            onchangeonly: {value:true, required:true},
+        },
+        inputs:0,               // set the number of inputs - only 0 or 1
+        outputs:1,              // set the number of outputs - 0 to n
+        icon: "bridge.png",     // saved in  icons/myicon.png
+        color: "#E2D96E", 
+        label: function() {
+            return this.name || "Sonos Get";
+        },
+        paletteLabel: "Sonos Get",
+        oneditprepare: function() {
+            $( "#node-input-updateInterval" ).spinner().width(80);
+        }
+    });
+</script>
+
+<!-- Setting design and inputs for node -->
+<script type="text/x-red" data-template-name="sonos-get">
+	<div class="form-row">
+        <label for="node-input-playnode"> SONOS Node</label>
+        <input type="text" id="node-input-playnode">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-dataType">Data Type</label>
+        <select id="node-input-dataType" style="width:70%;">
+            <option value="state">State</option>
+            <option value="volume">Volume</option>
+            <option value="track">Current Track</option>
+            <option value="seek">Seek Position</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-updateInterval">Update Interval (ms)</label>
+        <input type="text" id="node-input-updateInterval" style="width:20%">
+    </div>
+    <div class="form-row">
+        <label>&nbsp;</label>
+        <input type="checkbox" id="node-input-onchangeonly" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-onchangeonly" style="width: 70%;">Only pass data if it has changed</label>
+    </div>
+
+	<div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="SONOS Node Name">
+    </div>	
+</script>
+
+
+<!-- Simple Help Text -->
+<script type="text/x-red" data-help-name="sonos-get">
+	<p>A node to retrieve data by timer</p>
+</script>

@@ -80,12 +80,8 @@
   "node-red": {
     "nodes": {
       "sonos-config":        "nodes/sonos-config.js",
-      "sonos-currenttrack":  "nodes/sonos-currenttrack.js",
-      "sonos-volume":        "nodes/sonos-volume.js",
-      "sonos-seek":          "nodes/sonos-seek.js",
-      "sonos-state":         "nodes/sonos-state.js",
-
-      "sonos-control":       "nodes/sonos-control.js",
+      "sonos-get":           "nodes/sonos-get.js",
+      "sonos-set":           "nodes/sonos-set.js",
       "sonos-queue":         "nodes/sonos-queue.js"
     }
   },
