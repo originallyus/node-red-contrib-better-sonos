@@ -1,14 +1,18 @@
 {
 	"name"        : "node-red-contrib-sonos",
-	"version"     : "0.0.6",
+	"version"     : "0.0.7",
 	"description" : "Controlling SONOS Player",
 	"main"        : "index.js",
-	"author"      : "Robert Henjes <smarthome@rhenjes.de>",
+	"author"      : "Robert Henjes <smarthome@rhenjes.de / Ferd Scheepers <ferd.scheepers@mamahuhu.nl",
 	"license"     : "MIT",
 	"contributors": [
 	{
 		"name" : "Robert Henjes",
 		"email": "smarthome@rhenjes.de"
+	},
+		{
+		"name" : "Ferd Scheepers",
+		"email": "ferd.scheepers@mamahuhu.nl"
 	}
 	],
 	"keywords": [ "node-red","sonos","music"],
@@ -17,7 +21,8 @@
 			"sonos-config"      : "sonos/sonos-config.js",
 			"sonos-control"     : "sonos/sonos-control.js",
 			"sonos-currenttrack": "sonos/sonos-currenttrack.js",
-			"sonos-queue"       : "sonos/sonos-queue.js"
+			"sonos-queue"       : "sonos/sonos-queue.js",
+			"sonos-query"	    : "sonos/sonos-query.js"
 		}
 	},
 	"repository": {
