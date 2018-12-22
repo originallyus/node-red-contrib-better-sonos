@@ -39,7 +39,7 @@ Check out [RMPlugin app](https://play.google.com/store/apps/details?id=us.origin
 
 
 ## Other awesome nodes developed by us
-  * [Dead-simple Alexa integration](https://github.com/originallyus/node-red-contrib-better-sonos)
+  * [Dead-simple Alexa integration](https://github.com/originallyus/node-red-contrib-alexa-local)
   * [H801 RGBW Controller](https://github.com/originallyus/node-red-contrib-h801)
   * RMPlugin nodes...WIP
 
