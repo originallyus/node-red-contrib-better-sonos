@@ -5,7 +5,7 @@ module.exports = function(RED) {
 	'use strict';
 
 	function Node(n) {
-	  
+
 		RED.nodes.createNode(this, n);
 		var node = this;
 		var configNode = RED.nodes.getNode(n.confignode);
@@ -17,7 +17,7 @@ module.exports = function(RED) {
 		//clear node status
 		node.status({});
 
-		//Hmmm?		
+                //Hmmm?
 		node.songuri = n.songuri;
 		node.position = n.position;
 		if (node.position === "empty") {
@@ -28,7 +28,8 @@ module.exports = function(RED) {
 		//handle input message
 		node.on('input', function (msg) {
 			helper.preprocessInputMsg(node, configNode, msg, function(device) {
-				setSonosQueue(node, msg, device.ipaddress);
+                                msg.payload = setSonosQueue(node, msg, device.ipaddress);
+                                node.send(msg);
 			});
 		});
 	}
@@ -42,25 +43,29 @@ module.exports = function(RED) {
 			return;
 		}
 
-		var payload = typeof msg.payload === 'object' ? msg.payload : {};
+	        var payload = typeof msg.payload === 'object' ? msg.payload : {};
 
 		var _songuri = node.songuri;
+
+		payload.position = node.position || payload.position;
+		payload.songuri = _songuri;
+
 		if (payload.songuri)
 			_songuri = payload.songuri;
-		
+
 		if (node.position === "next" || payload.position === "next") {
-			node.log("Queueing URI next: " + _songuri);
+		    node.log("Queueing URI next: " + _songuri)
 			client.queueNext(_songuri, function (err, result) {
 				helper.handleSonosApiRequest(node, err, result, msg, null, null);
 			});
-		} 
+		}
 		else if (node.position === "directplay" || payload.position === "directplay") {
 			node.log("Direct play URI: " + _songuri);
 			client.play(_songuri, function (err, result) {
 				helper.handleSonosApiRequest(node, err, result, msg, null, null);
 			});
-		} 
-		else {				
+		}
+		else {
 			// Default is append to the end of current queue
 			var set_position = 0;
 			// Evaluate different inputs (json payload preferred, node option second, default third)
@@ -73,10 +78,12 @@ module.exports = function(RED) {
 			}
 			// Queue song now
 			node.log("Queuing at " + set_position + " URI: " + _songuri );
+			payload.position = set_position;
 			client.queue(_songuri, set_position, function (err, result) {
 				helper.handleSonosApiRequest(node, err, result, msg, null, null);
 			});
 		}
+		return payload;
 	}
 
 	RED.nodes.registerType('better-sonos-queue', Node);
