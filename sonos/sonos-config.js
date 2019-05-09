@@ -9,12 +9,11 @@ module.exports = function(RED)
 
     //Build API to auto detect IP Addresses
     RED.httpAdmin.get("/sonosSearch", function(req, res) {
-        console.log("test sonosSearch");
-        // RED.log.debug("GET /sonosSearch");
-        // discoverSonos(function(devices) {
-        //     RED.log.debug("GET /sonosSearch: " + devices.length + " found");
-        //     res.json(devices);
-        // });
+        RED.log.debug("GET /sonosSearch");
+        discoverSonos(function(devices) {
+            RED.log.debug("GET /sonosSearch: " + devices.length + " found");
+            res.json(devices);
+        });
     });
 
     function discoverSonos(discoveryCallback) 
@@ -30,6 +29,7 @@ module.exports = function(RED)
             device.deviceDescription()
             .then((info) => {
                 var label = "" + info.friendlyName + " (" + info.roomName + ")";
+                console.log(devices, '<======= devices array');
                 devices.push({
                     label:label,
                     value:info.serialNum
