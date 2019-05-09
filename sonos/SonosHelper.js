@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-class SonosHelper 
+class SonosHelper
 {
     constructor() {
     }
@@ -59,14 +59,12 @@ class SonosHelper
     {
         var foundMatch = false;
         var sonos = require("sonos");
-        var search = sonos.search(function(device) {
-            device.deviceDescription(function(err, info) {
-                if (err) {
-                    node.error(JSON.stringify(err));
-                    callback(err, null)
-                    return;
-                }
+        
+        const search = sonos.DeviceDiscovery({ timeout: 30000 });
 
+        search.on('DeviceAvailable', function (device, model){
+            device.deviceDescription()
+            .then((info) => {
                 //Inject additional property
                 if (info.friendlyName !== undefined && info.friendlyName !== null)
                     info.ipaddress = info.friendlyName.split("-")[0].trim();
@@ -77,6 +75,7 @@ class SonosHelper
                 if (info.serialNum !== undefined && info.serialNum !== null)
                     if (info.serialNum.trim().toUpperCase() == serialNumber.trim().toUpperCase())
                         foundMatch = true;
+                
                 if (device.serialNumber !== undefined && device.serialNumber !== null)
                     if (device.serialNumber.trim().toUpperCase() == serialNumber.trim().toUpperCase())
                         foundMatch = true;
@@ -89,37 +88,65 @@ class SonosHelper
                         search.destroy();
                     search = null;
                 }
+            })
+            .catch((err) => {
+                node.error(JSON.stringify(err));
+                callback(err, null);
+                return;
             });
         });
-        search.setMaxListeners(Infinity);
 
-        //In case there is no match
-        setTimeout(function() { 
+        setTimeout(function(){
             if (!foundMatch && callback)
                 callback(null, null);
             if (search !== null && search !== undefined) {
                 search.destroy();
                 search = null;
             }
-        }, 3000);
+        }, 30000);
     }
 
-    handleSonosApiRequest(node, err, result, msg, successString, failureString)
-    {
-        if (err) {
-            node.error(err);
-            console.log(err);
-            if (!failureString)
-                failureString = "failed to execute request";
-            node.status({fill:"red", shape:"dot", text:failureString});
-            return;
-        }
+    // handleSonosApiRequest(node, err, result, msg, successString, failureString)
+    // {
+    //     if (err) {
+    //         node.error(err);
+    //         console.log(err);
+    //         if (!failureString)
+    //             failureString = "failed to execute request";
+    //         node.status({fill:"red", shape:"dot", text:failureString});
+    //         return;
+    //     }
 
+    //     msg.payload = result;
+
+    //     if (!successString)
+    //         successString = "request success";
+    //     node.status({fill:"blue", shape:"dot", text:successString});
+    // }
+    
+    handleSonosApiRequest(promise, node, msg, successString, failureString){
+        promise
+            .then((result) => {
+                this.handleSonosApiRequest(node, result, msg, successString);
+            })
+            .catch((err) => {
+                this.handleSonosApiRequestError(node, err, failureString);
+            });
+    }
+
+    handleSonosApiRequest(node, result, msg, successString){
         msg.payload = result;
-
         if (!successString)
             successString = "request success";
         node.status({fill:"blue", shape:"dot", text:successString});
+    }
+
+    handleSonosApiRequestError(node, err, failureString){
+        node.error(err);
+        console.log(err);
+        if(!failureString)
+            failureString = "failed to execute request";
+        node.status({fill:"red", shape:"dot", text:failureString});
     }
 }
 module.exports = SonosHelper;

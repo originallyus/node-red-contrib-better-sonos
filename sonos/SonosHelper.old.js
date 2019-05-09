@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-class SonosHelper2
+class SonosHelperOld
 {
     constructor() {
     }
@@ -59,12 +59,14 @@ class SonosHelper2
     {
         var foundMatch = false;
         var sonos = require("sonos");
-        
-        const search = sonos.DeviceDiscovery({ timeout: 30000 });
+        var search = sonos.search(function(device) {
+            device.deviceDescription(function(err, info) {
+                if (err) {
+                    node.error(JSON.stringify(err));
+                    callback(err, null)
+                    return;
+                }
 
-        search.on('DeviceAvailable', function (device, model){
-            device.deviceDescription()
-            .then((info) => {
                 //Inject additional property
                 if (info.friendlyName !== undefined && info.friendlyName !== null)
                     info.ipaddress = info.friendlyName.split("-")[0].trim();
@@ -75,7 +77,6 @@ class SonosHelper2
                 if (info.serialNum !== undefined && info.serialNum !== null)
                     if (info.serialNum.trim().toUpperCase() == serialNumber.trim().toUpperCase())
                         foundMatch = true;
-                
                 if (device.serialNumber !== undefined && device.serialNumber !== null)
                     if (device.serialNumber.trim().toUpperCase() == serialNumber.trim().toUpperCase())
                         foundMatch = true;
@@ -88,22 +89,19 @@ class SonosHelper2
                         search.destroy();
                     search = null;
                 }
-            })
-            .catch((err) => {
-                node.error(JSON.stringify(err));
-                callback(err, null);
-                return;
             });
         });
+        search.setMaxListeners(Infinity);
 
-        setTimeout(function(){
+        //In case there is no match
+        setTimeout(function() { 
             if (!foundMatch && callback)
                 callback(null, null);
             if (search !== null && search !== undefined) {
                 search.destroy();
                 search = null;
             }
-        }, 30000);
+        }, 3000);
     }
 
     handleSonosApiRequest(node, err, result, msg, successString, failureString)
@@ -123,21 +121,5 @@ class SonosHelper2
             successString = "request success";
         node.status({fill:"blue", shape:"dot", text:successString});
     }
-
-    handleSonosApiRequest(node, result, msg, successString){
-        msg.payload = result;
-        if (!successString)
-            successString = "request success";
-        node.status({fill:"blue", shape:"dot", text:successString});
-
-    }
-
-    handleSonosApiRequestError(node, err, failureString){
-        node.error(err);
-        console.log(err);
-        if(!failureString)
-            failureString = "failed to execute request";
-        node.status({fill:"red", shape:"dot", text:failureString});
-    }
 }
-module.exports = SonosHelper2;
+module.exports = SonosHelperOld;
