@@ -9,11 +9,12 @@ module.exports = function(RED)
 
     //Build API to auto detect IP Addresses
     RED.httpAdmin.get("/sonosSearch", function(req, res) {
-        RED.log.debug("GET /sonosSearch");
-        discoverSonos(function(devices) {
-            RED.log.debug("GET /sonosSearch: " + devices.length + " found");
-            res.json(devices);
-        });
+        console.log("test sonosSearch");
+        // RED.log.debug("GET /sonosSearch");
+        // discoverSonos(function(devices) {
+        //     RED.log.debug("GET /sonosSearch: " + devices.length + " found");
+        //     res.json(devices);
+        // });
     });
 
     function discoverSonos(discoveryCallback) 
