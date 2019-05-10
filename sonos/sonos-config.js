@@ -36,14 +36,14 @@ module.exports = function(RED)
                 });
             })
             .catch((err) => {
-                console.log(err);
+                console.log(err, '<==== deviceDescovery');
                 return;
             });
         });
 
-        setTimeout(function(){
-            search.destroy();
-        }, 5000);
+        // setTimeout(function(){
+            //search.destroy();
+        // }, 5000);
 
   
         //Add a bit of delay for all devices to be discovered
