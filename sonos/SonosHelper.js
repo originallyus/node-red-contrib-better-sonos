@@ -40,6 +40,7 @@ class SonosHelper
         //first find the Sonos IP address from given serial number
         this.findSonos(node, configNode.serialnum, function(err, device) {
             if (err) {
+                node.error(JSON.stringify(err));
                 node.status({fill:"red", shape:"dot", text:"error looking for device " + configNode.serialnum});
                 return;
             }
