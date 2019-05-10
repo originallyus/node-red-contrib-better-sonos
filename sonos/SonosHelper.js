@@ -41,6 +41,7 @@ class SonosHelper
         this.findSonos(node, configNode.serialnum, function(err, device) {
             if (err) {
                 node.error(JSON.stringify(err));
+		console.log(err, '<======== error');
                 node.status({fill:"red", shape:"dot", text:"error looking for device " + configNode.serialnum});
                 return;
             }
@@ -125,17 +126,19 @@ class SonosHelper
     //     node.status({fill:"blue", shape:"dot", text:successString});
     // }
     
-    handleSonosApiRequest(promise, node, msg, successString, failureString){
+    handleSonosApiRequest(promise, node, msg, successString, failureString, callback){
         promise
             .then((result) => {
-                this.handleSonosApiRequest(node, result, msg, successString);
+                this.handleSonosApiRequestSuccess(node, result, msg, successString);
+		if (callback)
+			callback(result);
             })
             .catch((err) => {
                 this.handleSonosApiRequestError(node, err, failureString);
             });
     }
 
-    handleSonosApiRequest(node, result, msg, successString){
+    handleSonosApiRequestSuccess(node, result, msg, successString){
         msg.payload = result;
         if (!successString)
             successString = "request success";

@@ -177,8 +177,11 @@ module.exports = function(RED) {
 				// 	helper.handleSonosApiRequestError(node, err, null);
 				// });
 				helper.handleSonosApiRequest(
-					client.playNotification("http://localhost:8080/doorbell.mp3", null, false, 80),
-					node, msg, "playing", null);
+					client.playNotification("https://internetgekki.es/wp-content/uploads/2019/05/stadsnomaden-digging-youve-got-to-dig.mp3", null, false, 80),
+					node, msg, "playing", null,
+					(success) => {
+						client.play();
+					});
 				break;
 			case "next":
 				// client.next(function(err, result) {
