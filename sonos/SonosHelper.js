@@ -99,10 +99,10 @@ class SonosHelper
         setTimeout(function(){
             if (!foundMatch && callback)
                 callback(null, null);
-            if (search !== null && search !== undefined) {
-                search.destroy();
-                search = null;
-            }
+            // if (search !== null && search !== undefined) {
+            //     search.destroy();
+            //     search = null;
+            // }
         }, 30000);
     }
 
