@@ -86,7 +86,7 @@ class SonosHelper
                 if (foundMatch) {
                     // if (search !== null && search !== undefined)
                     //     search.destroy();
-                    search = null;
+                    // search = null;
                 }
             })
             .catch((err) => {
