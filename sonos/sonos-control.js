@@ -184,13 +184,18 @@ module.exports = function(RED) {
 							metadata: null, 
 							onlyWhenPlaying: false, 
 							volume: 30
+						})
+						.then((success) => {
+							console.log('Did play notification %j', result);
+							console.log('===> This is the PID we are going to exit %s', process.pid);
+							process.exit();
+						})
+						.catch((err) => {
+							console.log('Did NOT play notification %j', result);
+							console.log('===> This is the PID we are going to exit %s', process.pid);
+							process.exit();
 						}),
-					node, msg, "playing", null,
-					(success) => {
-						console.log('Did play notification %j', result);
-						console.log('===> This is the PID we are going to exit %s', process.pid);
-						process.exit();
-					});
+					node, msg, "playing", null);
 				break;
 			case "next":
 				// client.next(function(err, result) {

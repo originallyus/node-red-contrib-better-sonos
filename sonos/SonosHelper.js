@@ -98,16 +98,16 @@ class SonosHelper
         }, 30000);
     }
     
-    handleSonosApiRequest(promise, node, msg, successString, failureString, callback){
+    handleSonosApiRequest(promise, node, msg, successString, failureString){
         promise
             .then((result) => {
                 this.handleSonosApiRequestSuccess(node, result, msg, successString);
-		if (callback)
-			callback(result);
-            })
-            .catch((err) => {
-                this.handleSonosApiRequestError(node, err, failureString);
-            });
+		// if (callback)
+		// 	callback(result);
+        //     })
+        //     .catch((err) => {
+        //         this.handleSonosApiRequestError(node, err, failureString);
+             });
     }
 
     handleSonosApiRequestSuccess(node, result, msg, successString){
