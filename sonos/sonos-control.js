@@ -195,7 +195,7 @@ module.exports = function(RED) {
 						})
 						.finally(() => {
 							console.log('===> This is the PID we are going to exit %s', process.pid);
-							process.exit();
+							//process.exit();
 						}),
 					node, msg, "playing", null);
 				break;
