@@ -84,12 +84,6 @@ class SonosHelper
 
                 if (foundMatch && callback)
                     callback(null, info);
-
-                if (foundMatch) {
-                    // if (search !== null && search !== undefined)
-                    //     search.destroy();
-                    // search = null;
-                }
             })
             .catch((err) => {
                 node.error(JSON.stringify(err));
@@ -101,30 +95,8 @@ class SonosHelper
         setTimeout(function(){
             if (!foundMatch && callback)
                 callback(null, null);
-            // if (search !== null && search !== undefined) {
-            //     search.destroy();
-            //     search = null;
-            // }
         }, 30000);
     }
-
-    // handleSonosApiRequest(node, err, result, msg, successString, failureString)
-    // {
-    //     if (err) {
-    //         node.error(err);
-    //         console.log(err);
-    //         if (!failureString)
-    //             failureString = "failed to execute request";
-    //         node.status({fill:"red", shape:"dot", text:failureString});
-    //         return;
-    //     }
-
-    //     msg.payload = result;
-
-    //     if (!successString)
-    //         successString = "request success";
-    //     node.status({fill:"blue", shape:"dot", text:successString});
-    // }
     
     handleSonosApiRequest(promise, node, msg, successString, failureString, callback){
         promise
