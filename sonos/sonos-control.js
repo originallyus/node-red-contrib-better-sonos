@@ -186,12 +186,14 @@ module.exports = function(RED) {
 							volume: 30
 						})
 						.then((success) => {
-							console.log('Did play notification %j', result);
-							console.log('===> This is the PID we are going to exit %s', process.pid);
-							process.exit();
+							console.log('Did play notification %j', success);
+							//console.log('===> This is the PID we are going to exit %s', process.pid);
+							//process.exit();
 						})
 						.catch((err) => {
-							console.log('Did NOT play notification %j', result);
+							console.log('Did NOT play notification %j', err);
+						})
+						.finally(() => {
 							console.log('===> This is the PID we are going to exit %s', process.pid);
 							process.exit();
 						}),
