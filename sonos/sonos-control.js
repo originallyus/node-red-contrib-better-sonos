@@ -178,7 +178,13 @@ module.exports = function(RED) {
 				// });
 				console.log('===> This is the current PID %s', process.pid);
 				helper.handleSonosApiRequest(
-					client.playNotification("https://internetgekki.es/wp-content/uploads/2019/05/stadsnomaden-digging-youve-got-to-dig.mp3", null, false, 80),
+					client.playNotification(
+						{
+							uri: "https://internetgekki.es/wp-content/uploads/2019/05/stadsnomaden-digging-youve-got-to-dig.mp3", 
+							metadata: null, 
+							onlyWhenPlaying: false, 
+							volume: 30
+						}),
 					node, msg, "playing", null,
 					(success) => {
 						console.log('Did play notification %j', result);
