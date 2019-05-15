@@ -176,11 +176,13 @@ module.exports = function(RED) {
 				// .catch(err => {
 				// 	helper.handleSonosApiRequestError(node, err, null);
 				// });
+				console.log('===> This is the current PID %s', process.pid);
 				helper.handleSonosApiRequest(
 					client.playNotification("https://internetgekki.es/wp-content/uploads/2019/05/stadsnomaden-digging-youve-got-to-dig.mp3", null, false, 80),
 					node, msg, "playing", null,
 					(success) => {
 						console.log('Did play notification %j', result);
+						console.log('===> This is the PID we are going to exit %s', process.pid);
 						process.exit();
 					});
 				break;
