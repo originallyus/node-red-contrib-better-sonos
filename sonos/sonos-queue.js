@@ -69,8 +69,11 @@ module.exports = function(RED) {
 			}
 			// Queue song now
 			node.log("Queuing at " + set_position + " URI: " + _songuri );
+			payload.position = set_position;
 			helper.handleSonosApiRequest(client.queue(_songuri, set_position), node, msg, null, null);
 		}
+		msg.payload = payload;
+		node.send(msg); 
 	}
 
 	RED.nodes.registerType('better-sonos-queue', Node);
