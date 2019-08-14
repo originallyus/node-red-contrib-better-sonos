@@ -37,11 +37,11 @@ module.exports = function(RED) {
 			return;
 		}
 
-		var payload = typeof msg.payload === 'object' ? msg.payload : {};
+		var payload = typeof msg.payload === 'string' ? msg.payload : "";
 
 		var _notificationuri = node.notificationuri;
-		if (payload.notificationuri)
-			_notificationuri = payload.notificationuri;
+		if (payload && payload != "")
+			_notificationuri = payload;
 
 		if (_notificationuri && _notificationuri != ""){
 			node.log("Playing notficiation with URI: " + _notificationuri);
