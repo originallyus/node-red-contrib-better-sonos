@@ -28,6 +28,11 @@
             $('.form-row.toggle').hide()
             $('.form-row.' + value).show()
 		  })
+          $('#node-input-mode').change(function () {
+              var value = $('#node-input-mode').val()
+              $('.form-row.toggle').hide()
+              $('.form-row.' + value).show()
+          })
 		},
         
     });
