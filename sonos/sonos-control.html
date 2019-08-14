@@ -9,7 +9,7 @@
             confignode: {value:"", type:"better-sonos-config"},
             name: {value:""},
 			mode: {value:""},
-			track: {value:""},
+            track: {value:""},
 			volume: {value:""},
 			volume_value: {value:""}     // TODO: check if value between 0..100
         },
@@ -50,24 +50,18 @@
 		<select type="text" id="node-input-mode" style="display: inline-block; width: 70%;" >
 			<option value=""></option>
             <option value="play">Play</option>
-            <option value="playNotification">Play notification</option>
             <option value="pause">Pause</option>
             <option value="stop">Stop</option>			
         </select>
     </div>
 
-	<div class="form-row toggle2 play">
+	<div class="form-row">
         <label for="node-input-track"><i class="fa fa-tag"></i> Track</label>
 		<select type="text" id="node-input-track" style="display: inline-block; width: 70%;" >
 			<option value=""></option>
             <option value="next">Next</option>
             <option value="previous">Previous</option>			
         </select>
-    </div>
-	
-	<div class="form-row toggle2 playNotification">
-        <label for="node-input-notificationuri"><i class="fa fa-tag"></i> Notification</label>
-        <input type="text" id="node-input-notificationuri" placeholder="Notification URI to play">
     </div>
 	
 	<div class="form-row">

@@ -168,37 +168,6 @@ module.exports = function(RED) {
 				// });
 				helper.handleSonosApiRequest(client.play(), node, msg, "playing", null);
 				break;
-			case "playNotification":
-				// client.playNotification("http://localhost:8080/doorbell.mp3", null, false, 80)
-				// .then(result => {
-				// 	helper.handleSonosApiRequest(node,result, msg, "playing");
-				// })
-				// .catch(err => {
-				// 	helper.handleSonosApiRequestError(node, err, null);
-				// });
-				console.log('===> This is the current PID %s', process.pid);
-				helper.handleSonosApiRequest(
-					client.playNotification(
-						{
-							uri: "https://internetgekki.es/wp-content/uploads/2019/05/stadsnomaden-digging-youve-got-to-dig.mp3", 
-							metadata: null, 
-							onlyWhenPlaying: false, 
-							volume: 30
-						})
-						.then((success) => {
-							console.log('Did play notification %j', success);
-							//console.log('===> This is the PID we are going to exit %s', process.pid);
-							//process.exit();
-						})
-						.catch((err) => {
-							console.log('Did NOT play notification %j', err);
-						})
-						.finally(() => {
-							console.log('===> This is the PID we are going to exit %s', process.pid);
-							//process.exit();
-						}),
-					node, msg, "playing", null);
-				break;
 			case "next":
 				// client.next(function(err, result) {
 				// 	helper.handleSonosApiRequest(node, err, result, msg, "next", null);
