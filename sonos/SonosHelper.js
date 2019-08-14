@@ -102,11 +102,9 @@ class SonosHelper
         promise
             .then((result) => {
                 this.handleSonosApiRequestSuccess(node, result, msg, successString);
-		// if (callback)
-		// 	callback(result);
-        //     })
-        //     .catch((err) => {
-        //         this.handleSonosApiRequestError(node, err, failureString);
+             })
+             .catch((err) => {
+                 this.handleSonosApiRequestError(node, err, failureString);
              });
     }
 

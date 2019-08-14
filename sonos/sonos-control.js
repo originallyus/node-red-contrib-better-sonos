@@ -121,15 +121,9 @@ module.exports = function(RED) {
 		switch (cmd) 
 		{
 			case "pause":
-				// client.pause(function(err, result) {
-				// 	helper.handleSonosApiRequest(node, err, result, msg, "paused", null);
-				// });
 				helper.handleSonosApiRequest(client.pause(), node, msg, "paused", null);
 				break;
 			case "stop":
-				// client.stop(function(err, result) {
-				// 	helper.handleSonosApiRequest(node, err, result, msg, "stopped", null);
-				// });
 				helper.handleSonosApiRequest(client.stop(), node, msg, "stopped", null);
 				break;
 			case "toggle":
@@ -144,15 +138,9 @@ module.exports = function(RED) {
 
 						//Toggle playing state
 						if (state === "playing") {
-							// client.pause(function(err, result) {
-							// 	helper.handleSonosApiRequest(node, err, result, msg, "paused", null);
-							// });
 							helper.handleSonosApiRequest(client.pause(), node, msg, "paused", null);
 						}
 						else {
-							// client.play(function(err, result) {
-							// 	helper.handleSonosApiRequest(node, err, result, msg, "playing", null);
-							// });
 							helper.handleSonosApiRequest(client.play(), node, msg, "playing", null);
 						}
 					})
@@ -163,41 +151,23 @@ module.exports = function(RED) {
 				break;
 			case "play":
 			case "playing":
-				// client.play(function(err, result) {
-				// 	helper.handleSonosApiRequest(node, err, result, msg, "playing", null);
-				// });
 				helper.handleSonosApiRequest(client.play(), node, msg, "playing", null);
 				break;
 			case "next":
-				// client.next(function(err, result) {
-				// 	helper.handleSonosApiRequest(node, err, result, msg, "next", null);
-				// });
 				helper.handleSonosApiRequest(client.next(), node, msg, "next", null);
 				break;
 			case "previous":
-				// client.previous(function(err, result) {
-				// 	helper.handleSonosApiRequest(node, err, result, msg, "previous", null);
-				// });
 				helper.handleSonosApiRequest(client.previous(), node, msg, "previous", null);
 				break;
 
 			case "mute":
-				// client.setMuted(true, function(err, result) {
-				// 	helper.handleSonosApiRequest(node, err, result, msg, "muted", null);
-				// });
 				helper.handleSonosApiRequest(client.setMuted(true), node, msg, "muted", null);
 				break;
 			case "unmute":
-				// client.setMuted(false, function(err, result) {
-				// 	helper.handleSonosApiRequest(node, err, result, msg, "unmuted", null);
-				// });
 				helper.handleSonosApiRequest(client.setMuted(false), node, msg, "muted", null);
 				break;
 
 			case "flush":
-				// client.flush(function(err, result) {
-				// 	helper.handleSonosApiRequest(node, err, result, msg, "queue cleared", null);
-				// });
 				helper.handleSonosApiRequest(client.flush(), node, msg, "muted", null);
 				break;
 		}
@@ -258,9 +228,6 @@ module.exports = function(RED) {
 					node.status({fill:"red", shape:"dot", text:"invalid value for volume"});
 					break;
 				}
-				// client.setVolume(String(_volumeValue), function(err, result) {
-				// 	helper.handleSonosApiRequest(node, err, result, msg, "vol: " + String(_volumeValue), null);
-				// });
 				helper.handleSonosApiRequest(client.setVolume(String(_volumeValue)), node, msg, "vol: " + String(_volumeValue), null);
 				break;
 
@@ -274,9 +241,6 @@ module.exports = function(RED) {
 						var volume_val = parseInt(result) + volume_step;
 						volume_val = Math.min(100, volume_val);
 						volume_val = Math.max(0, volume_val);
-						// client.setVolume(volume_val, function (err, result) {
-						// 	helper.handleSonosApiRequest(node, err, result, msg, "vol: " + String(volume_val), null);
-						// });
 						helper.handleSonosApiRequest(client.setVolume(volume_val), node, msg, "vol: " + String(volume_val), null);
 					})
 					.catch((err) => {
@@ -294,9 +258,6 @@ module.exports = function(RED) {
 						var volume_val = parseInt(result) - volume_step;
 						volume_val = Math.min(100, volume_val);
 						volume_val = Math.max(0, volume_val);
-						// client.setVolume(volume_val, function (err, result) {
-						// 	helper.handleSonosApiRequest(node, err, result, msg, "vol: " + String(volume_val), null);
-						// });
 						helper.handleSonosApiRequest(client.setVolume(volume_val), node, msg, "vol: " + String(volume_val), null);
 					})
 					.catch((err) => {
@@ -310,9 +271,6 @@ module.exports = function(RED) {
 	function handleGroupingCommand(node, configNode, msg, client, payload)
 	{
 		if (payload === "leave_group") {
-			// client.leaveGroup(function(err, result) {
-			// 	helper.handleSonosApiRequest(node, err, result, msg, "left group", null);
-			// });
 			helper.handleSonosApiRequest(client.leaveGroup(),node, msg, "left group", null);
 		}
 
@@ -325,9 +283,6 @@ module.exports = function(RED) {
 				return;
 			}
 
-			// client.joinGroup(deviceName, function(err, result) {
-			// 	helper.handleSonosApiRequest(node, err, result, msg, "joined group with " + deviceName, null);
-			// });
 			helper.handleSonosApiRequest(client.joinGroup(deviceName),node, msg, "joined group with " + deviceName, null);
 		}
 	}
