@@ -31,7 +31,8 @@
       "better-sonos-control": "sonos/sonos-control.js",
       "better-sonos-status": "sonos/sonos-status.js",
       "better-sonos-queue": "sonos/sonos-queue.js",
-      "better-sonos-get-queue": "sonos/sonos-get-queue.js"
+      "better-sonos-get-queue": "sonos/sonos-get-queue.js",
+      "better-sonos-notify": "sonos/sonos-notify.js",
     }
   },
   "repository": {
