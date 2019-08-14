@@ -49,7 +49,7 @@ module.exports = function(RED) {
 			helper.handleSonosApiRequest(
 				client.playNotification(
 					{
-						uri: notificationuri, 
+						uri: _notificationuri, 
 						metadata: null, 
 						onlyWhenPlaying: false, 
 						volume: 30
