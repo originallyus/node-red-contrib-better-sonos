@@ -66,7 +66,7 @@ module.exports = function(RED) {
 						console.log('===> This is the PID we are going to exit %s', process.pid);
 						//process.exit();
 					}),
-				node, msg, "playing", null);
+				node, msg, "notification played: " + _notificationuri, null);
 		}
 		
 		msg.payload = payload;
