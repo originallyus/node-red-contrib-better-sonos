@@ -30,7 +30,7 @@
 		  })
           $('#node-input-mode').change(function () {
               var value = $('#node-input-mode').val()
-              $('.form-row.toggle').hide()
+              $('.form-row.toggle2').hide()
               $('.form-row.' + value).show()
           })
 		},
@@ -56,7 +56,7 @@
         </select>
     </div>
 
-	<div class="form-row toggle play">
+	<div class="form-row toggle2 play">
         <label for="node-input-track"><i class="fa fa-tag"></i> Track</label>
 		<select type="text" id="node-input-track" style="display: inline-block; width: 70%;" >
 			<option value=""></option>
@@ -65,7 +65,7 @@
         </select>
     </div>
 	
-	<div class="form-row toggle playNotification">
+	<div class="form-row toggle2 playNotification">
         <label for="node-input-notificationuri"><i class="fa fa-tag"></i> Notification</label>
         <input type="text" id="node-input-notificationuri" placeholder="Notification URI to play">
     </div>
