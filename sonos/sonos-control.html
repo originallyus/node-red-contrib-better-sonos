@@ -9,7 +9,7 @@
             confignode: {value:"", type:"better-sonos-config"},
             name: {value:""},
 			mode: {value:""},
-			track: {value:""},
+            track: {value:""},
 			volume: {value:""},
 			volume_value: {value:""}     // TODO: check if value between 0..100
         },
@@ -28,6 +28,11 @@
             $('.form-row.toggle').hide()
             $('.form-row.' + value).show()
 		  })
+          $('#node-input-mode').change(function () {
+              var value = $('#node-input-mode').val()
+              $('.form-row.toggle2').hide()
+              $('.form-row.' + value).show()
+          })
 		},
         
     });

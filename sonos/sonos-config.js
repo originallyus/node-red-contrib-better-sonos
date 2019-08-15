@@ -23,25 +23,23 @@ module.exports = function(RED)
         var sonos = require("sonos");
 
         var devices = [];
-        var search = sonos.search(function(device) {
-            device.deviceDescription(function(err, info) {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
+        const search = sonos.DeviceDiscovery({ timeout: 5000 });
+
+        search.on('DeviceAvailable', function (device, model){
+            device.deviceDescription()
+            .then((info) => {
                 var label = "" + info.friendlyName + " (" + info.roomName + ")";
+                console.log(devices, '<======= devices array');
                 devices.push({
                     label:label,
                     value:info.serialNum
                 });
+            })
+            .catch((err) => {
+                console.log(err, '<==== deviceDescovery');
+                return;
             });
         });
-        search.setMaxListeners(Infinity);
-
-        //Stop searching after 5 seconds
-        setTimeout(function() { 
-            search.destroy();
-        }, 5000);
   
         //Add a bit of delay for all devices to be discovered
         if (discoveryCallback) {

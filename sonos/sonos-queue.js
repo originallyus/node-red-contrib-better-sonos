@@ -50,15 +50,11 @@ module.exports = function(RED) {
 		
 		if (node.position === "next" || payload.position === "next") {
 			node.log("Queueing URI next: " + _songuri);
-			client.queueNext(_songuri, function (err, result) {
-				helper.handleSonosApiRequest(node, err, result, msg, null, null);
-			});
+			helper.handleSonosApiRequest(client.queueNext(_songuri), node, msg, null, null);
 		} 
 		else if (node.position === "directplay" || payload.position === "directplay") {
 			node.log("Direct play URI: " + _songuri);
-			client.play(_songuri, function (err, result) {
-				helper.handleSonosApiRequest(node, err, result, msg, null, null);
-			});
+			helper.handleSonosApiRequest(client.play(_songuri), node, msg, null, null);
 		} 
 		else {				
 			// Default is append to the end of current queue
@@ -73,10 +69,11 @@ module.exports = function(RED) {
 			}
 			// Queue song now
 			node.log("Queuing at " + set_position + " URI: " + _songuri );
-			client.queue(_songuri, set_position, function (err, result) {
-				helper.handleSonosApiRequest(node, err, result, msg, null, null);
-			});
+			payload.position = set_position;
+			helper.handleSonosApiRequest(client.queue(_songuri, set_position), node, msg, null, null);
 		}
+		msg.payload = payload;
+		node.send(msg); 
 	}
 
 	RED.nodes.registerType('better-sonos-queue', Node);

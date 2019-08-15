@@ -1,0 +1,62 @@
+<!-- Sonos Play Notification -->
+<!-- Play notification right away, and potentially afterwards continue with previous song -->
+
+<!-- Registering Node -->
+<script type="text/javascript">
+	RED.nodes.registerType('better-sonos-notify',{
+        category: 'Sonos',
+        defaults: {    
+            confignode: {value:"", type:"better-sonos-config"},
+			notificationuri: {value:""},
+            name: {value:""}
+        },
+        inputs:1,               // set the number of inputs - only 0 or 1
+        outputs:1,              // set the number of outputs - 0 to n
+        icon: "better_sonos.png",       // saved in  icons/myicon.png
+        color: "#FFFFFF", 
+        label: function() {
+            return this.name || "Sonos notify";
+        },
+        paletteLabel: "Notify",
+        // TODO: On change, focus and hide.
+        // oneditprepare: function () {
+        //   $('#node-input-position').change(function () {
+        //     var value = $('#node-input-position').val()
+        //     $('.form-row.toggle').hide()
+        //     $('.form-row.' + value).show()
+		//   });
+		// },
+    });
+</script>
+
+<!-- Setting design and inputs for node -->
+<script type="text/x-red" data-template-name="better-sonos-notify">
+	<div class="form-row">
+        <label for="node-input-confignode"> Sonos Config Node</label>
+        <input type="text" id="node-input-confignode">
+    </div>
+	
+	<div class="form-row">
+        <label for="node-input-notificationuri"><i class="fa fa-tag"></i> Notification</label>
+        <input type="text" id="node-input-notificationuri" placeholder="Notification URI to play">
+    </div>	
+
+	<div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="SONOS Notify Node Name">
+    </div>	
+</script>
+
+
+<!-- Simple Help Text -->
+<script type="text/x-red" data-help-name="better-sonos-notify">
+	<p>
+        A node for playing a notification with Sonos
+    </p>
+	<p>
+        When providing a msg.payload containing a string representing the desired uri to play as notification, it will play this file in stead of the configured uri in the node.
+    </p>
+    <p>
+        The msg output will be the same as the msg input.
+    </p>
+</script>

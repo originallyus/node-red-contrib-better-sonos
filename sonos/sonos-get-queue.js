@@ -36,20 +36,8 @@ module.exports = function(RED) {
 			return;
 		}
 
-		client.getQueue(function (err, queueObj) {
-			if (err) {
-				if (err === "{}") {
-					node.error(JSON.stringify(err));
-					node.status({fill:"blue", shape:"dot", text:"queue is empty"});
-					msg.payload = [];
-					node.send(msg);
-				}
-				else {
-					node.error(JSON.stringify(err));
-					node.status({fill:"red", shape:"dot", text:"failed to retrieve current queue"});
-				}
-				return;
-			}
+		client.getQueue()
+		.then(queueObj => {
 			if (queueObj === null || queueObj === undefined || queueObj.items === undefined || queueObj.items === null) {
 				node.status({fill:"red", shape:"dot", text:"invalid current queue retrieved"});
 				return;
@@ -71,6 +59,18 @@ module.exports = function(RED) {
 
 			//Send output
 			node.send(msg);
+		})
+		.catch(err => {
+			if (err === "{}") {
+				node.error(JSON.stringify(err));
+				node.status({fill:"blue", shape:"dot", text:"queue is empty"});
+				msg.payload = [];
+				node.send(msg);
+			}
+			else {
+				node.error(JSON.stringify(err));
+				node.status({fill:"red", shape:"dot", text:"failed to retrieve current queue"});
+			}
 		});
 	}
 	
